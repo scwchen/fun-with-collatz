@@ -1,13 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fun with Collatz</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
+
 <body>
+    <header>
+        <h1>Fun with Collatz</h1>
+    </header>
+    <main>
+        <h2>What is the Collatz Conjecture?</h2>
+        <p>I'm glad you asked.</p>
+        <p>The Collatz Conjecture refers to a mathematical proposition, widely believed to be true, that follows these
+            rules:</p>
+        <ul>
+            <li>
+                <p>Start with a positive integer (n)</p>
+            </li>
+            <li>
+                <p>If the term is even, divide by 2 to get the next term (i.e. n/2)</p>
+            </li>
+            <li>
+                <p>If the term is odd, multiply by 3 and add 1 (i.e. 3n + 1)</p>
+            </li>
+        </ul>
+
+        <p>Each sequence may vary widely but will always end in an infinite loop of the numbers 4, 2, 1</p>
+        <p>This becomes and infinite loop as 4 / 2 = 2 then 2 / 2 = 1 then 1 * 3 + 1 = 4 then 4 / 2 = 2 and so on and so
+            on....</p>
+
+        <form class=input-form>
+            <label for="" class="user-input-label">Go on try and break math...I dare you</label>
+            <input type="number" name="user-number" id="user-number" min="0" placeholder="Enter a positive integer">
+            <button type="submit" class="submit-collatz">Try it out!</button>
+        </form>
+
+        <canvas id="collatz-chart" width="400" height="800"></canvas>
+        <!-- <script>
+            // Chart js config
+            const labels = "Number of integers";
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: data,
+            };
+
+            const myChart = new Chart(
+                document.getElementById('collatz-chart'),
+                config
+            );
+        </script> -->
+    </main>
+    <footer></footer>
     <script src="./script.js"></script>
 </body>
+
 </html>
