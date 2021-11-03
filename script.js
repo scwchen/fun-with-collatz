@@ -14,7 +14,64 @@ app.submitHandler = () => {
         app.collatzArray.push(firstNum);
         app.nextNum(firstNum);
     });
+
 }
+
+app.displayCollatz = () => {
+    const chartContainer = document.querySelector('.collatz-chart-container');
+
+    chartContainer.innerHTML = '<canvas id="collatz-chart" max-width="400" max-height="800"></canvas>';
+    const labelArray = [];
+
+    for (let i = 1; i <= app.collatzArray.length; i++) {
+        labelArray.push(i);
+    }
+    // Chart js config
+    const labels = labelArray;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Value',
+            data: [...app.collatzArray],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Number in Series',
+                        font: {
+                            size: 20
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Term Value',
+                        font: {
+                            size: 20
+                        }
+                    }
+                },
+            }
+        }
+    };
+
+    const myChart = new Chart(
+        document.getElementById('collatz-chart'),
+        config
+    );
+};
+
 
 // Recursive function to grab the next number until it loops indefinitely 
 app.nextNum = (previousNumber) => {
@@ -31,7 +88,7 @@ app.nextNum = (previousNumber) => {
             app.collatzArray.push(nextNumber);
             app.nextNum(nextNumber);
         } else {
-            console.log(app.collatzArray);
+            app.displayCollatz();
         }
     } else {
         app.collatzArray.push(nextNumber);
